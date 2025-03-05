@@ -15,7 +15,7 @@ const InputController = ({ label }) => {
                     type="number"
                     min="0"
                     max="500"
-                    value="200"
+                    defaultValue = "200"
                     className="border border-gray-300 rounded-lg p-2"
                 />
             </div>
@@ -24,17 +24,14 @@ const InputController = ({ label }) => {
 };
 const InputColor = ({ label }) => {
     return (
-        <div className="flex flex-col my-4 w-[200px]">
+        <div className="flex flex-col my-4 w-[200px] justify-center items-center">
             <label htmlFor="height">{label}</label>
             <input type="color" />
         </div>
     );
 };
 const Controllers = () => {
-    let colp = {
-        type: "color",
-        value: "#000000",
-    };
+   
     return (
         <div className="flex gap-4">
             <InputController label="Height" />
