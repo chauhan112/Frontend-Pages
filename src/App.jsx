@@ -1,12 +1,10 @@
-import { CountDown } from "./CountDown";
-import { BlobGen } from "./BlobGen";
-import {ShapeEditor} from "./ShapeEditor"
+import { LynklePage } from "./AI/LynklePage";
 import "./App.css";
 function App() {
     return (
-        <div className="flex items-center justify-center min-h-screen ">
-            {/* <CountDown /> */}
-            <ShapeEditor/>
+        <div>
+            <LynklePage />
+            {/* <ShapeEditor /> */}
         </div>
     );
 }

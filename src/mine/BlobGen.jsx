@@ -15,7 +15,7 @@ const InputController = ({ label }) => {
                     type="number"
                     min="0"
                     max="500"
-                    defaultValue = "200"
+                    defaultValue="200"
                     className="border border-gray-300 rounded-lg p-2"
                 />
             </div>
@@ -31,7 +31,6 @@ const InputColor = ({ label }) => {
     );
 };
 const Controllers = () => {
-   
     return (
         <div className="flex gap-4">
             <InputController label="Height" />
