@@ -1,92 +1,73 @@
-const Header = () => {
-    return (
-        <header className="flex justify-between items-center p-4 bg-white shadow-md">
-            <div className="text-2xl font-bold text-purple-800">LYNKLE</div>
-            <nav className="space-x-4">
-                <a href="#" className="text-gray-600 hover:text-purple-800">
-                    Home
-                </a>
-                <a href="#" className="text-gray-600 hover:text-purple-800">
-                    Pricing
-                </a>
-                <button className="bg-purple-800 text-white px-4 py-2 rounded hover:bg-purple-700">
-                    Login
-                </button>
-            </nav>
-        </header>
-    );
-};
-
+import { useRef, useEffect } from "react";
+import { Header, TitleWithSubtitle, Brands, CButton } from "../Components";
 export const LynklePage = () => {
+    let ref = useRef();
+
+    useEffect(() => {
+        document.title = "LYNKLE | Digital Business Card";
+        console.log(ref);
+        ref.current.setSt({
+            ...ref.current.st,
+            img: { className: " w-[150px] mx-4 h-24" },
+        });
+    }, []);
+
+    let brands = [
+        [
+            "https://lynkle.com/landing/trusted-by/rolls-royce.svg",
+            "Rolls Royce logo",
+        ],
+        [
+            "https://lynkle.com/landing/trusted-by/delta-airlines.svg",
+            "Delta Airlines logo",
+        ],
+        [
+            "https://lynkle.com/landing/trusted-by/roberto-cavalli.svg",
+            "Roberto Cavalli logo",
+        ],
+        ["https://lynkle.com/landing/trusted-by/ibm.svg", "HSBC logo"],
+        [
+            "https://lynkle.com/landing/trusted-by/ucla.svg",
+            "UCLA Berkeley logo",
+        ],
+    ];
     return (
         <div className="font-sans bg-gray-50">
-            {/* Header */}
             <Header />
-            {/* Hero Section */}
-            <section className="text-center py-16 bg-white">
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-                    Create your digital business card in seconds
-                </h1>
-                <button className="bg-purple-800 text-white px-6 py-3 rounded-lg hover:bg-purple-700">
-                    Get started free
-                </button>
-                <div className="flex justify-center space-x-6 mt-8">
-                    {["DELTA", "NETFLIX", "IBM", "HSBC", "Berkeley"].map(
-                        (brand) => (
-                            <img
-                                key={brand}
-                                src={`https://via.placeholder.com/100x40?text=${brand}`}
-                                alt={brand}
-                                className="h-10"
-                            />
-                        )
-                    )}
-                </div>
+            <section className="text-center py-16 bg-white h-screen ">
+                <TitleWithSubtitle
+                    {...{
+                        h1title: {
+                            label: "Create your digital business card in seconds",
+                        },
+                        subtitle:
+                            "Instantly share who you are with anyone, anywhere.",
+                    }}
+                />
+
+                <CButton>Get started free</CButton>
+                <Brands brands={brands} ref={ref} />
             </section>
 
             {/* Feature: First Impression */}
-            <section className="py-16 flex flex-col md:flex-row items-center justify-center bg-gray-50">
+            <section className="py-16 flex flex-col md:flex-row items-center justify-center bg-gray-50 ">
                 <div className="md:w-1/2 p-6">
-                    <h2 className="text-3xl font-bold text-gray-800 mb-4">
+                    <h2 className="text-4xl text-gray-800 mb-4">
                         Leave a lasting first impression
                     </h2>
-                    <p className="text-gray-600 mb-4">
+                    <p className="text-gray-600 mb-4 text-xl">
                         Create free personalized digital business cards to
                         elevate your networking. Try free!
                     </p>
-                    <button className="bg-purple-800 text-white px-6 py-3 rounded-lg hover:bg-purple-700">
-                        Get started free
-                    </button>
+                    <CButton>Get started free</CButton>
                 </div>
-                <div className="md:w-1/2 p-6">
-                    <div className="bg-white shadow-lg rounded-lg p-4">
-                        <div className="bg-yellow-400 text-center py-2 rounded-t-lg">
-                            <span className="text-purple-800 font-semibold">
-                                LYNKLE
-                            </span>
-                        </div>
-                        <div className="p-4 text-center">
-                            <img
-                                src="https://via.placeholder.com/100"
-                                alt="Profile"
-                                className="w-24 h-24 rounded-full mx-auto"
-                            />
-                            <h3 className="text-xl font-bold mt-2">
-                                Emily Johnson
-                            </h3>
-                            <p className="text-gray-600">
-                                Certified Marketing Professional
-                            </p>
-                            <p className="text-gray-600">Contact Details</p>
-                            <p className="text-gray-600">
-                                📧 emily.johnson@email.com
-                            </p>
-                            <p className="text-gray-600">📞 +1 234 567 8900</p>
-                            <p className="text-gray-600">
-                                🌐 www.emilyjohnson.com
-                            </p>
-                        </div>
-                    </div>
+
+                <div className="shadow-lg text-center md:w-1/4 rounded-lg">
+                    <img
+                        src="https://lynkle.com/landing/card-shot.svg"
+                        alt="Profile"
+                        className="mx-auto"
+                    />
                 </div>
             </section>
 

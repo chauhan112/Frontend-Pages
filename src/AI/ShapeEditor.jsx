@@ -20,7 +20,6 @@ const DisplayBlob = ({ height, width, borderRadius, colors }) => {
         />
     );
 };
-
 const NumberInput = ({ label, value, onChange }) => {
     return (
         <div className="flex items-center">
@@ -36,7 +35,6 @@ const NumberInput = ({ label, value, onChange }) => {
         </div>
     );
 };
-
 const RangeInput = ({ value, onChange }) => {
     return (
         <input
@@ -49,7 +47,6 @@ const RangeInput = ({ value, onChange }) => {
         />
     );
 };
-
 const RangeGroup = ({ k1, k2, v1, v2, onChange }) => {
     return (
         <div className="flex flex-col gap-4 w-1/2">
@@ -58,7 +55,6 @@ const RangeGroup = ({ k1, k2, v1, v2, onChange }) => {
         </div>
     );
 };
-
 const ColorInput = ({ colors, handleColorChange }) => {
     return (
         <div className="flex items-center">
@@ -78,7 +74,6 @@ const ColorInput = ({ colors, handleColorChange }) => {
         </div>
     );
 };
-
 export const ShapeEditor = () => {
     const [height, setHeight] = useState(200);
     const [width, setWidth] = useState(200);
