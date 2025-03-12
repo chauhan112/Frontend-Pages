@@ -1,155 +1,196 @@
-import { useRef, useEffect } from "react";
-import { Header, TitleWithSubtitle, Brands, CButton } from "../Components";
+import {
+    useRef,
+    useEffect,
+    forwardRef,
+    useState,
+    useImperativeHandle,
+} from "react";
+import {
+    Header,
+    FirstImpression,
+    IntroPage,
+    TitleWithSubtitle,
+    linkCss,
+} from "../Components";
+
+const imageText = (title, subtitle, imgLink) => {
+    return {
+        section: {
+            className:
+                "py-4 flex flex-row-reverse items-center justify-between bg-gray-50",
+        },
+        div: { className: "flex flex-col" },
+        title: {
+            h1title: {
+                label: title,
+                className: "text-3xl font-bold text-gray-800 mb-4",
+            },
+            subtitle: subtitle,
+            p: {
+                className: "text-gray-600 mb-4",
+            },
+            div: {
+                className: "w-[90%]",
+            },
+        },
+        cbutton: [
+            {
+                children: "Get started free",
+                href: "/sign-up",
+                className: linkCss.outline,
+            },
+        ],
+        img: {
+            div: {
+                className: "text-center md:w-1/2 rounded-lg",
+            },
+            img: {
+                src: imgLink,
+                alt: "social image",
+            },
+        },
+    };
+};
+
+const textImage = (title, subtitle, imgLink) => {
+    return {
+        section: {
+            className:
+                "py-4 flex flex-row items-center justify-center bg-gray-50",
+        },
+        div: { className: "flex flex-col" },
+        title: {
+            h1title: {
+                label: title,
+                className: "text-4xl text-gray-800 mb-4",
+            },
+            subtitle: subtitle,
+            p: {
+                className: "text-gray-600 mb-4 text-xl",
+            },
+            div: {
+                className: "w-[90%]",
+            },
+        },
+        cbutton: [
+            {
+                children: "Get started free",
+                href: "/sign-up",
+                className: linkCss.outline,
+            },
+        ],
+        img: {
+            img: {
+                src: imgLink,
+                alt: "social image",
+            },
+        },
+    };
+};
+
+const headerSubheader = (title, subtitle) => {
+    return {
+        h1title: {
+            label: title,
+            className: "font-bold text-4xl mb-4",
+        },
+        subtitle: subtitle,
+        p: {
+            className: "text-gray-600 mb-4 w-[50%] text-center",
+        },
+        div: {
+            className: "flex flex-col items-center",
+        },
+    };
+};
+
 export const LynklePage = () => {
     let ref = useRef();
-
     useEffect(() => {
-        document.title = "LYNKLE | Digital Business Card";
-        console.log(ref);
-        ref.current.setSt({
-            ...ref.current.st,
-            img: { className: " w-[150px] mx-4 h-24" },
-        });
+        console.log(ref.current);
     }, []);
 
-    let brands = [
-        [
-            "https://lynkle.com/landing/trusted-by/rolls-royce.svg",
-            "Rolls Royce logo",
-        ],
-        [
-            "https://lynkle.com/landing/trusted-by/delta-airlines.svg",
-            "Delta Airlines logo",
-        ],
-        [
-            "https://lynkle.com/landing/trusted-by/roberto-cavalli.svg",
-            "Roberto Cavalli logo",
-        ],
-        ["https://lynkle.com/landing/trusted-by/ibm.svg", "HSBC logo"],
-        [
-            "https://lynkle.com/landing/trusted-by/ucla.svg",
-            "UCLA Berkeley logo",
-        ],
-    ];
     return (
         <div className="font-sans bg-gray-50">
             <Header />
-            <section className="text-center py-16 bg-white h-screen ">
-                <TitleWithSubtitle
-                    {...{
-                        h1title: {
-                            label: "Create your digital business card in seconds",
-                        },
-                        subtitle:
-                            "Instantly share who you are with anyone, anywhere.",
-                    }}
-                />
-
-                <CButton>Get started free</CButton>
-                <Brands brands={brands} ref={ref} />
-            </section>
-
-            {/* Feature: First Impression */}
-            <section className="py-16 flex flex-col md:flex-row items-center justify-center bg-gray-50 ">
-                <div className="md:w-1/2 p-6">
-                    <h2 className="text-4xl text-gray-800 mb-4">
-                        Leave a lasting first impression
-                    </h2>
-                    <p className="text-gray-600 mb-4 text-xl">
-                        Create free personalized digital business cards to
-                        elevate your networking. Try free!
-                    </p>
-                    <CButton>Get started free</CButton>
-                </div>
-
-                <div className="shadow-lg text-center md:w-1/4 rounded-lg">
-                    <img
-                        src="https://lynkle.com/landing/card-shot.svg"
-                        alt="Profile"
-                        className="mx-auto"
-                    />
-                </div>
-            </section>
-
+            <IntroPage ref={ref} />
+            <FirstImpression />
             {/* Feature: Seamlessly Share */}
-            <section className="py-16 text-center bg-white">
-                <h2 className="text-3xl font-bold text-gray-800 mb-4">
-                    Seamlessly share, instantly connect
-                </h2>
-                <p className="text-gray-600 mb-4">
-                    Share your details with anyone, anywhere. Compatible with
-                    Apple Wallet, Google Wallet, and more.
-                </p>
-                <div className="flex justify-center space-x-4 mt-4">
-                    {["facebook", "whatsapp", "youtube", "qr"].map((icon) => (
-                        <img
-                            key={icon}
-                            src={`https://via.placeholder.com/40?text=${icon}`}
-                            alt={icon}
-                            className="w-10 h-10"
-                        />
-                    ))}
-                </div>
-                <button className="bg-purple-800 text-white px-6 py-3 rounded-lg hover:bg-purple-700 mt-4">
-                    Get started free
-                </button>
-            </section>
-
-            {/* Feature: LYNKLE Pro */}
-            <section className="py-16 flex flex-col md:flex-row items-center justify-center bg-gray-50">
-                <div className="md:w-1/2 p-6">
-                    <h2 className="text-3xl font-bold text-gray-800 mb-4">
-                        LYNKLE Pro
-                    </h2>
-                    <p className="text-gray-600 mb-4">
-                        Unlock branding, analytics, lead collection, private
-                        card sharing, active email signature, integrations, and
-                        more.
-                    </p>
-                    <button className="bg-purple-800 text-white px-6 py-3 rounded-lg hover:bg-purple-700">
-                        Get started free
-                    </button>
-                </div>
-                <div className="md:w-1/2 p-6">
-                    <div className="bg-white shadow-lg rounded-lg p-4">
-                        <h3 className="text-xl font-bold">
-                            Share your details with Leo
-                        </h3>
-                        <p className="text-gray-600">📧 leo.smith@email.com</p>
-                        <p className="text-gray-600">📞 +1 234 567 8900</p>
-                        <button className="bg-purple-800 text-white px-4 py-2 rounded-lg mt-4 hover:bg-purple-700">
-                            Share now
-                        </button>
-                    </div>
-                </div>
-            </section>
-
-            {/* Feature: Sync with Google or Outlook */}
-            <section className="py-16 text-center bg-white">
-                <h2 className="text-3xl font-bold text-gray-800 mb-4">
-                    Sync with Google or Outlook
-                </h2>
-                <p className="text-gray-600 mb-4">
-                    Connect your Google or Outlook account to sync contacts, add
-                    to address book.
-                </p>
-                <div className="flex justify-center space-x-4 mt-4">
-                    <img
-                        src="https://via.placeholder.com/40?text=Google"
-                        alt="Google"
-                        className="w-10 h-10"
-                    />
-                    <img
-                        src="https://via.placeholder.com/40?text=Outlook"
-                        alt="Outlook"
-                        className="w-10 h-10"
-                    />
-                </div>
-                <button className="bg-purple-800 text-white px-6 py-3 rounded-lg hover:bg-purple-700 mt-4">
-                    Get started free
-                </button>
-            </section>
-
+            <FirstImpression
+                {...imageText(
+                    "Seamlessly share, instantly connect",
+                    "Share your details with anyone, anywhere. Compatible with Apple Wallet, Google Wallet, and more.",
+                    "https://lynkle.com/landing/share-anywhere.svg"
+                )}
+            />
+            <TitleWithSubtitle
+                {...headerSubheader(
+                    "Lynkle Pro",
+                    "Unlock advanced branding controls, seamless lead collection, private card sharing, automated email signatures, card engagements and much more."
+                )}
+            />
+            <FirstImpression
+                {...textImage(
+                    "Grow your network on auto-pilot",
+                    "Effortlessly collect leads, grow your network, and build your mailing list.",
+                    "https://lynkle.com/landing/generate-leads.svg"
+                )}
+            />
+            <FirstImpression
+                {...imageText(
+                    "Sync with Google or Outlook",
+                    "Connect your Google or Outlook account to automatically add new leads to your address book.",
+                    "https://lynkle.com/landing/sync-contacts.svg"
+                )}
+            />
+            <FirstImpression
+                {...textImage(
+                    "Stay on brand",
+                    "Instantly convert your digital business card to an on-brand email signature that works on all major email clients.",
+                    "https://lynkle.com/_next/image?url=%2Flanding%2Femail-signature.png&w=1920&q=100"
+                )}
+            />
+            <FirstImpression
+                {...imageText(
+                    "Best-in-class privacy",
+                    "Keep full control of your privacy with private card sharing—only those you select can access your Lynkle card by sharing an expiring link. This link automatically refreshes in your Apple Wallet, Google Wallet, or the Lynkle Send screen.",
+                    "https://lynkle.com/landing/private-card-sharing.svg"
+                )}
+            />
+            <TitleWithSubtitle
+                {...headerSubheader(
+                    "Lynkle Teams",
+                    "With Lynkle Teams, you'll enjoy all the premium features and security of a Lynkle Pro plan, but with more ways to collaborate and communicate as a team."
+                )}
+            />
+            <FirstImpression
+                {...textImage(
+                    "Team cards for everyone",
+                    "Beautiful, consistent digital business cards tailored to your brand for your whole team.",
+                    "https://lynkle.com/landing/team-cards.svg"
+                )}
+            />
+            <FirstImpression
+                {...imageText(
+                    "Card templates",
+                    "Update designs, information, or branding across all cards instantly with powerful, flexible templates for every team in your organization.",
+                    "https://lynkle.com/landing/card-templates.svg"
+                )}
+            />
+            <FirstImpression
+                {...textImage(
+                    "Centralized team contacts",
+                    "Capture and manage every lead from every team member in one unified view. Automatically sync new leads with your CRM.",
+                    "https://lynkle.com/landing/team-contacts.svg"
+                )}
+            />
+            <FirstImpression
+                {...imageText(
+                    "Simple billing and user management",
+                    "Add or remove users, handle billing, and oversee your team's cards from one hassle-free dashboard.",
+                    "https://lynkle.com/landing/billing-management.svg"
+                )}
+            />
             {/* Testimonials */}
             <section className="py-16 bg-gray-50">
                 <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">
@@ -197,7 +238,6 @@ export const LynklePage = () => {
                     ))}
                 </div>
             </section>
-
             {/* FAQ */}
             <section className="py-16 bg-white">
                 <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">
@@ -224,7 +264,6 @@ export const LynklePage = () => {
                     ))}
                 </div>
             </section>
-
             {/* Footer */}
             <footer className="py-8 bg-gray-50 text-center">
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">
